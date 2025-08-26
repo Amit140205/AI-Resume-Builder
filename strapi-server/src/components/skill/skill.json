@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_skill_skills",
+  "info": {
+    "displayName": "Skill",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,11 @@
+1. project set up
+2. set up shadcn
+3. set up react router dom
+4. handling authentication using clerk
+(clerk set up)
+5. header of the webpage
+6. scrapi setup and integrate with render postgresql db
+7. making the dashboard page
+8. handling api for create new resume
+9. adding preview + formsection
+10.using react rating to show rating in skills section, using react-web-share for sharing
