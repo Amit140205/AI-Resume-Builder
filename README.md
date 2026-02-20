@@ -1,76 +1,111 @@
-# AI Resume Builder 🚀
+# Resume Builder
 
-An intelligent, AI-powered resume builder that helps users create professional, customizable resumes quickly and efficiently. This application leverages modern web technologies and AI assistance to generate tailored resume content for different roles, industries, and personal experiences.
+An AI-powered resume builder web application that lets users create, customize, and share professional resumes with ease.
 
-## 🌟 Features
+## Features
 
-- **✨ AI-Powered Content Generation**
-  - Intelligent resume summaries
-  - Enhanced job descriptions
-  - Skill highlights 
+- **Authentication** — Secure sign-in via [Clerk](https://clerk.com/)
+- **Resume Management** — Create, edit, delete, and view resumes from a personal dashboard
+- **Step-by-step Form** — Guided form sections for Personal Details, Summary, Experience, Education, and Skills
+- **AI-Powered Content** — Generate professional summaries and work experience descriptions using Google Gemini AI
+- **Live Preview** — Real-time resume preview as you fill in the form
+- **Theme Customization** — Pick from 20 color themes to personalize your resume
+- **Download & Share** — Print/download your resume as a PDF or share via a unique link
+- **Rich Text Editor** — WYSIWYG editor for experience work summaries
 
-- **🖥️ Intuitive User Interface**
-  - Clean, modern design
-  - Step-by-step resume building process
-  - Real-time preview
+## Tech Stack
 
-- **📂 Backend Integration**
-  - Seamless integration with Strapi CMS
-  - Template management system
+**Frontend**
+- React 19 + Vite 7
+- Tailwind CSS v4
+- shadcn/ui (Radix UI primitives)
+- React Router DOM v7
+- Clerk (authentication)
+- Google Gemini AI (`@google/genai`)
+- Sonner (toast notifications)
+- `react-simple-wysiwyg` (rich text editor)
+- `@smastrom/react-rating` (skill rating)
+- `react-web-share` (share functionality)
 
-- **📤 Export & Sharing**
-  - High-quality PDF export
-  - Download and share options
+**Backend**
+- [Strapi](https://strapi.io/) v5 (headless CMS / REST API)
+- PostgreSQL database
 
-- **🔒 Security & Scalability**
-  - Secure user authentication with Clerk
-  - Data encryption and privacy protection
+## Project Structure
 
-## 🛠️ Tech Stack
-
-| Component | Technology |
-|-----------|------------|
-| **Frontend** | React |
-| **Backend** | Strapi (Node.js Headless CMS) |
-| **Database** | PostgreSQL |
-| **AI Engine** | Google Gemini API |
-| **Authentication** | Clerk |
-| **Styling** | CSS3 / Tailwind CSS |
-
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/Amit140205/AI-Resume-Builder.git
-cd AI-Resume-Builder
+```
+├── Resume Builder/          # Frontend (React + Vite)
+│   ├── src/
+│   │   ├── auth/            # Clerk sign-in page
+│   │   ├── components/      # Shared UI components
+│   │   ├── context/         # Resume context provider
+│   │   ├── pages/
+│   │   │   ├── dashboard/   # Dashboard, resume card, forms, preview
+│   │   │   └── home/        # Landing page
+│   │   └── services/        # API client (Axios) & Gemini AI
+│   └── ...
+└── strapi-server/           # Backend (Strapi + PostgreSQL)
+    └── src/
+        ├── api/user-resume/ # Resume collection type
+        └── components/      # Experience, Education, Skill components
 ```
 
+## Getting Started
 
-### Building Your Resume
+### Prerequisites
 
-1. **Sign Up/Login** using Clerk authentication
-2. **Personal Information** - Add your contact details and basic information
-3. **Professional Experience** - Input your work history with AI-enhanced descriptions
-4. **Education** - Add your educational background
-5. **Skills** - List your technical and soft skills with AI recommendations
-6. **Preview & Export** - Review your resume and export as PDF
+- Node.js >= 20
+- PostgreSQL database
 
-## 🤖 AI Features
+### Environment Variables
 
-### Content Generation
-- **Smart Summaries**: AI generates professional summaries based on your experience
-- **Job Description Enhancement**: Transforms basic job duties into compelling descriptions
-- **Skill Matching**: Suggests relevant skills based on your industry and role
+**Frontend** — create `Resume Builder/.env`:
+```env
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_STRAPI_API_KEY=your_strapi_api_token
+VITE_GEMINI_API_KEY=your_google_gemini_api_key
+VITE_BASE_URL=http://localhost:5173
+```
 
-### Customization
-- **Tone Adjustment**: Adjust the professional tone of your resume content
+**Backend** — create `strapi-server/.env` (see `.env.example`):
+```env
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS=...
+API_TOKEN_SALT=...
+ADMIN_JWT_SECRET=...
+TRANSFER_TOKEN_SALT=...
+JWT_SECRET=...
+ENCRYPTION_KEY=...
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=your_db
+DATABASE_USERNAME=your_user
+DATABASE_PASSWORD=your_password
+```
 
-## 👨‍💻 Author
+### Installation & Running
 
-**Amit Kumar**
-- GitHub: [@Amit140205](https://github.com/Amit140205)
-- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+**Backend (Strapi):**
+```bash
+cd strapi-server
+npm install
+npm run develop
+```
 
+**Frontend (React):**
+```bash
+cd "Resume Builder"
+npm install
+npm run dev
+```
 
+The frontend runs at `http://localhost:5173` and the Strapi admin panel at `http://localhost:1337/admin`.
 
-**⭐ If this project helped you, please consider giving it a star on GitHub!**
+## Usage
+
+1. Sign in with your account (powered by Clerk)
+2. From the dashboard, click **+** to create a new resume
+3. Fill in each section using the step-by-step form — use **Generate from AI** buttons for suggestions
+4. Preview updates in real time on the right side
+5. On the final step, download your resume as a PDF or share the unique link
